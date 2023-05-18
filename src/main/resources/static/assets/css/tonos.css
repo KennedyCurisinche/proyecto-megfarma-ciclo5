@@ -1,0 +1,72 @@
+
+.primero{
+               text-transform: uppercase;
+               background:rgba(255,255,255,.2);
+               box-shadow: 0 5px 15px rgba(0, 0, 0, .5 );
+               backdrop-filter: blur(10px);
+               width:500px;
+               height:500px;
+               display:flex;
+               align-items:center;
+               
+        }
+
+.cambio{
+	background:#000;
+	
+}
+
+.cerrar{
+	background:#FF0000;
+}
+/*		Estilos de modo claro*/
+/*.fondoclaro{
+	background: #2980B9;  
+background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);  
+background: linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9); 
+
+}*/
+
+.cardclaro{
+	
+	width:100%;
+	color:#000000;
+}
+
+.btncomprarclaro{
+	background:#1995AD;
+	
+}
+
+
+.modalfondo{
+	background:#CFD0D2;
+	color:#000000;
+}
+
+/*		Estilos de modo oscuro		*/
+
+.fondodark{
+	background:#011a27;
+}
+
+.carddark{
+	background:#063852;
+	width:100%;
+	color:#FFFFFF;
+}
+
+.btncomprardark{
+	background:#F0810F;
+	color:#FFFFFF;
+}
+
+.modalfondodark{
+	background:#002D94;
+	color:#FFFFFF;
+}
+
+.botonesdark{
+	background:#F0810F;
+	color:#FFFFFF;
+}

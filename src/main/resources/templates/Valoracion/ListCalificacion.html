@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html>
+<head th:replace="layout::head">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/responsive.bootstrap4.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/dataTables.bootstrap4.min.css}">
+<link rel="stylesheet" type="text/css"
+	href="@{/assets/css/font-awesome.min.css}">
+<link rel="stylesheet" type="text/css"
+	th:href="@{/assets/css/datatables.min.css}">
+<script th:src="@{/assets/js/lib/datatables.min.js}"></script>
+
+
+<body class="bg-primary">
+
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$("#tabla_valor").DataTable(
+											{
+												language : {
+													"decimal" : "",
+													"emptyTable" : "Datos no disponibles en la tabla",
+													"info" : "Mostrando _START_ a _END_ de _TOTAL_ registros",
+													"infoEmpty" : "Mostrando 0 a 0 de 0 registros",
+													"infoFiltered" : "(Filtrado de _MAX_ registros totales)",
+													"infoPostFix" : "",
+													"thousands" : ",",
+													"lengthMenu" : "Mostrando _MENU_ registros",
+													"loadingRecords" : "Cargando...",
+													"processing" : "Procesando...",
+													"search" : "Buscar:",
+													"zeroRecords" : "No se encontraron registros para la búsqueda",
+													"paginate" : {
+														"first" : "Primero",
+														"last" : "Ultimo",
+														"next" : "Siguiente",
+														"previous" : "Anterior"
+													},
+													"aria" : {
+														"sortAscending" : ": Activar para ordenar ascendente",
+														"sortDescending" : ": Activar para ordenar descendente"
+													}
+												}
+											});
+							$('[data-toggle="tooltip"]').tooltip();
+						});
+	</script>
+
+	<nav th:replace="layout::menu"></nav>
+	
+	<!-- --------------- -->
+
+
+
+	<!-- ---------------- -->
+	<div>
+		<div class="card-body bg-light">
+			<div class="row ">
+				<table
+					class="table table-striped table-bordered dt-responsive nowrap"
+					id="tabla_valor">
+					<thead>
+						<tr>
+							<th scope="col">ID Valoracion</th>
+							<th scope="col">ID cliente</th>
+							<th scope="col">Nombre</th>
+							<th scope="col">Apellido</th>
+							<th scope="col">Correo</th>
+							<th scope="col">DNI</th>
+							
+							<th scope="col">Calificacion</th>
+							
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="con : ${listvalores}">
+							<td th:text="${con.idvalor}"></td>
+							<td th:text="${con.idcli}"></td>
+							<td th:text="${con.nomcli}"></td>
+							<td th:text="${con.apecli}"></td>
+							<td th:text="${con.corcli}"></td>  
+							<td th:text="${con.dnicli}"></td>
+							<td th:text="${con.calificacion}"></td>
+							
+						<input type="hidden" class="form-control text-dark"
+						  id="valorestrella" 
+						  th:value="${con.calificacion}" 
+						  th:data-calificacion="${con.calificacion}">
+						 <input type="hidden" th:data-idvalor="${con.idvalor}"	>
+							
+					
+							
+						
+				<!-- $(this).attr("data-calificacion")*/
+				
+				/*	$(document).ready(function (){
+					let nota = $("#valorestrella").val();
+					console.log(nota);
+					califi(nota);	
+				});	*/
+				 -->
+			
+			
+			
+						
+						
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	
+	<!-- ----------------------------------------------------- -->
+<div class="modal fade" id="evaluar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+    	<h4 class="card-title" >Calificacion</h4>
+      <div class="col-12 text-center">
+        <span class="fa fa-star star" onclick="calificar(this)" id="1estrella"></span> 
+        <span class="fa fa-star star" onclick="calificar(this)" id="2estrella"></span> 
+        <span class="fa fa-star star" onclick="calificar(this)" id="3estrella"></span>
+        <span class="fa fa-star star" onclick="calificar(this)" id="4estrella"></span> 
+        <span class="fa fa-star star" onclick="calificar(this)" id="5estrella"></span>
+      </div>
+      </div>
+      <div class="modal-footer">
+	>
+      </div>
+      	<script>
+			$(document).ready(function (){
+					let nota = $("#valorestrella").val();
+					console.log(nota);
+					califi(nota);	
+				}); 
+
+				
+				function califi(count) {
+					let nombre = "star";
+					for (let i = 0; i < 5; i++) {
+
+						if (i < count) {
+
+							document.getElementById((i + 1) + nombre).style.color = "orange";
+						} else {
+							document.getElementById((i + 1) + nombre).style.color = "black";
+							
+						}
+
+					}
+				}
+			</script>
+    </div>
+  </div>
+</div>
+
+
+
+</body>
+</html>

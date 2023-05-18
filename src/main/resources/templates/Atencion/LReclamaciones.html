@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head th:insert="layout::head">
+  <meta charset="UTF-8">
+  <title>Reclamaciones</title>
+</head>
+<body>
+    <div class="container-fluid p-2 bg-primary border text-white text-center ">
+    <h1></h1>
+        <img class="border p-1 bg-light my-1" width="250" height="" src="https://media.discordapp.net/attachments/935382445803597854/958498394756755526/LOGOFARMACIA.png" alt=""> 
+    </div>
+  
+        <div class="container border" style="margin-left:100px; margin-bottom: auto;  "   >
+           <h3 class="text-center">Libro de reclamaciones <img width="50px" th:href="@{/assets/img/libro-icono.png}" alt=""> </h3> 
+
+            <div class="datos1">
+            <h3>Datos Generales</h3><br>
+            <h5>Fecha</h5><h5 th:text="${fecha}"></h5><br>
+            <h5>Razon Social </h5><h5>BOTICAS IP S.A.C</h5><br>
+            <h5>RUC </h5><h5>12052365478</h5><br>
+            <h5>Domicilio Fiscal</h5> <h5>Av Tacna 186 , altura Estacion La cultura </h5><br>
+            </div> <br>
+
+
+		<!-- - O ES CORREO O ES GUARDAR HTML --- -->
+
+      <!-- -  	 <form   action="https://formsubmit.co/jcaychocanamero@gmail.com" method="POST"> -->
+      		<form th:action="@{/Atencion/guardar}" th:object="${reclamos}" method="POST">
+      	
+                <div class="datos1">
+                    <h4>Idenficacion del consumidor </h4><br>
+                    <div class="input-group mb-3"> <br><br>
+                        <span class="input-group-text" id="basic-addon1">Nombre</span>
+                        <input th:field="*{nombre}" type="text" required pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1])[a-zA-ZÀ-ÿ\u00f1\u00d1]+$" class="form-control" placeholder="Andrea Anais"  >
+                  </div>
+                  <div class="input-group mb-">
+                    <span class="input-group-text" id="basic-addon1">Apellido</span>
+                    <input  th:field="*{apellido}" type="text" value="Perez" required pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1])[a-zA-ZÀ-ÿ\u00f1\u00d1]+$" class="form-control" name="Apellido" aria-label="Username" aria-describedby="basic-addon1" placeholder="Lopez Aliaga">
+                  </div>
+                </div><br><hr>
+
+               
+                    <div class="input-group mb-" style="width: 222px;"><br>
+                      <h4>Ingrese su DNI</h4>
+                      <div>
+                      <input  th:field="*{dni}" value="12345678" type="text" required pattern="[0-9]+" maxlength="8" class="form-control" name="Dni" placeholder="XXXXXXXX" aria-label="Username" aria-describedby="basic-addon1" id="dni">
+                    </div>
+                </div><br><hr>
+
+                    <div>
+                        <h3>Datos del cliente</h3>
+                        <div class="input-group mb-3">
+                        <span class="input-group-text" id="basic-addon1">Ingrese su número fijo</span>
+                        <input th:field="*{num_fijo}" type="text"  required pattern="[0-9]+" maxlength="7" class="form-control " placeholder="Ingrese su número fijo, por favor" aria-label="Server" id="telefono"><br>
+                         <br><span class="input-group-text" id="basic-addon1">Ingrese su número de celular</span>
+                         <input th:field="*{num_celular}" maxlength="9" type="text"  required pattern="[0-9]+" class="form-control "  placeholder="Ingrese su número de celular, por favor"  aria-label="Server" id="celular"><br>
+                          <br>
+                          <span class="input-group-text" id="basic-addon1">@</span>
+                            <input th:field="*{correo}" type="email" class="form-control" placeholder="Ingrese su correo electrónico, por favor"    aria-label="Server"><br>
+                        </div>
+
+                    </div><hr>
+
+                    <div>
+                        <h4>Motivo (Limite de caracteres 50)</h4>
+                        <div class="form-floating">
+                            <textarea maxlength="50"  th:field="*{motivo}"  class="form-control" required pattern="[A-Za-z]+" name="Detalle_del_reclamo" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2"></label>
+                          </div>
+                    </div><hr><br>
+
+                    <div>
+                        <h4>Detalle de reclamo (Limite de caracteres 250)</h4>
+                        <div class="form-floating">
+                            <textarea  maxlength="250" th:field="*{reclamo}" class="form-control"  required pattern="[A-Za-z]+" name="Cliente_pide" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                            <label for="floatingTextarea2"></label>
+                          </div>
+                    </div><hr><br>
+
+                  
+                    <h5>Acciones adoptadas</h5>
+                    <label for="">Fecha</label><br>
+                    <label for="">Estimado Cliente, muchas gracias por registrar su incidencia en el Libro de Reclamaciones, su opinion es muy importante para nosotros.</label><br><br>
+                    <h5 style="font-size: 18px;">"La firma del colaborador en la presente hoja de reclamo, expresa únicamente la recepción de la misma, más no la aceptación de su contenido. La presente reclamación será tratatada dentro del plazo de lery. "</h5><br>
+                    <h5 style="font-size: 18px;">"Nuestra área de servicio al Cliente le informa: (i) La formulación del reclamo no impide acudir a otras vías de solución de controversias ni es requisito previo para interponer una denuncia ante el INDECOPI, (ii) El proveedor deberá dar respuesta al reclamo en un plazo no mayor a treinta (30) días calendario, pudiendo ampliar el plazo hasta por treinta (30) días más, previa comunicación al consumidor."</h5>
+                    <hr>
+                    <!-- ---------------VALIDACION FINAL--------- -->
+
+                        <label class="form-check-label" for="flexCheckDefault">
+                      He leído y doy conformidad a mis datos y garantizo la veracidad del reclamo o queja.
+                  </label>
+                  <label class="form-check-label " type="checkbox" value="" for="flexCheckChecked">
+                    He leído y acepto las políticas de privacidad
+                  </label> <br> <br>
+                  <div class="row">
+                    <div class="col-1">
+                   <button class="btn bg-success text-light" onclick="activarcaja()"  type="button" value="ACEPTO" >ACEPTO</button> <br><br>
+                  </div>
+                  
+                </div>
+                			<!-- --------AGREGAR EL FORM Y LOS PARAMETROS 
+                			DE LA BASE DE DATOS PARA QUE GUARDE---------- -->
+				<div class="d-grid gap-2">
+                    <button th:href="@{Catalogo/homeinicio}" type="submit" class="btn btn-primary btn-lg" id="boton_aceptar" disabled="true">Acepto</button>
+                </div>
+                    <br><br>
+                </form> 
+              
+            
+            
+        </div>
+
+    </div>
+  
+    <script type="text/javascript">
+     $(document).ready(function(){
+    	$("#dni").val("");
+    	$("#telefono").val("");
+    	$("#celular").val("");
+     }) 
+    
+   	 function activarcaja(){
+        document.getElementById("boton_aceptar").disabled=false
+      }
+      
+      $("#boton_aceptar").click(function(){
+     		alert("Su reclamo a sido registrado. Esto lo vera la parte administrativa y si es posible se comunicara a la brevedad posible. Gracias por su compresión.");
+      });
+    </script>
+</body>
+</html>

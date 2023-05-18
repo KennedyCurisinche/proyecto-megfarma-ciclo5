@@ -1,0 +1,89 @@
+
+<html>
+<head th:insert="layout::head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<div
+		class="container-fluid p-2 bg-primary border text-white text-center ">
+		<img class="border p-1 bg-light my-1" width="250" height=""
+			src="https://media.discordapp.net/attachments/935382445803597854/958498394756755526/LOGOFARMACIA.png"
+			alt="">
+	</div>
+	<div class="container"
+		style="border-style: double; width: 800px; padding: 40px; border-color: rgb(59, 59, 233); margin-top: 150px; margin-bottom: 50px;">
+		<h1 class="text-center" style="margin-top: -20px">Ventana de
+			solicitudes</h1>
+
+		<form th:action="@{/Solicitud/save_solicitudes}"
+			th:object="${solicitud}" method="POST"
+			class="col-lg-6 col-lg-offset-3"
+			style="width: 640px; margin-left: 30px; margin-top: 20px;">
+
+			<div class="form-group">
+				<label style="height: 30px;">Nombres *</label> <input
+					th:field="*{nombre}" required pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$"
+					type="text" class="form-control"
+					style="border-color: blue; margin-bottom: 20px;"
+					placeholder="Ej. Andrea">
+			</div>
+			<div class="form-group">
+				<label style="height: 30px;">Apellidos *</label> <input
+					th:field="*{apellido}" required pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$"
+					type="text" class="form-control"
+					style="border-color: blue; margin-bottom: 20px;"
+					placeholder="Ej. Perez García">
+			</div>
+			<div class="form-group">
+				<label style="height: 30px;">Dirección </label> <input th:field="*{direccion}"
+					 type="text"
+					class="form-control"
+					style="border-color: blue; margin-bottom: 20px;"
+					placeholder="Ej. Av. Lima 2022">
+			</div>
+			<div class="form-group">
+				<label style="height: 30px;">Seleccione su tipo de documento
+					de identidad*</label> <select class="form-control" name="tipo_documento"
+					style="border-color: blue; margin-bottom: 20px;">
+					<option>-Ninguno-</option>
+					<option value="D.N.I." >D.N.I.</option>
+					<option value="C.E." >C.E.</option>
+					<option value="Menor de edad" >Menor de edad</option>
+				</select>
+			</div>
+			<div class="form-group">
+				<label style="height: 30px;">N° Doc. de identidad *</label> <input maxlength="8"
+					required pattern="[0-9]+" th:field="*{num_documento}" type="text" class="form-control"
+					style="border-color: blue; margin-bottom: 20px;"
+					placeholder="Ej. 40125201" id="dni">
+			</div>
+			<div class="form-group">
+				<label style="height: 30px;">Correo electrónico </label> <input th:field="*{correo}"
+					type="email" class="form-control"
+					style="border-color: blue; margin-bottom: 20px;"
+					placeholder="Ej. nombre@correo.com">
+			</div>
+			<div class="form-group">
+				<label style="height: 30px;">Ingrese su solicitud, por
+					favor, (Limite de caracteres 250)</label>
+				<textarea maxlength="250" th:field="*{solicitud}" class="form-control" rows="5" required pattern="^[a-zA-ZÀ-ÿ\u00f1\u00d1]+(\s*[a-zA-ZÀ-ÿ\u00f1\u00d1]*)*[a-zA-ZÀ-ÿ\u00f1\u00d1]+$+[0-9]+"
+					style="border-color: blue; margin-bottom: 20px;"></textarea>
+			</div>
+			<button type="submit" class="btn btn-block btn-lg btn-primary"
+				style="margin-left: 235px; margin-top: 40px;" id="registrar">Registrar
+				solicitud</button>
+		</form>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#dni").val("");
+		});
+		
+		$(document).on("click", "#registrar", function(){
+			alert("Su solicitud ha sido registra. Nos comunicaremos con usted si es posible");
+		})
+	</script>
+
+</body>
+</html>

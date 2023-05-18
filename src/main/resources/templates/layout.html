@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head th:fragment="head">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" th:href="@{/assets/css/bootstrap.css}">
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<link th:href="@{/assets/css/datatables.css}">
+<script src="https://kit.fontawesome.com/2c36e9b7b1.js"
+	crossorigin="anonymous"></script>
+<link rel="stylesheet" th:href="@{/assets/css/Style_layout.css}">
+<link rel="stylesheet" th:href="@{/assets/css/datoscliente.css}">
+<script th:src="@{/assets/js/lib/bootstrap.bundle.js}"></script>
+<script th:src="@{/assets/js/lib/jquery.js}"></script>
+<title>MEGAFARMA</title>
+</head>
+
+<link rel="stylesheet" th:href="@{/assets/css/tonos.css}">
+<body>
+
+	<nav class="navbar fixed-top p-1 navbar-expand-lg navbar-dark bg-dark"
+		th:fragment="menu">
+		<div class="container nav-superior-adm">
+			<a class="navbar-brand" th:href="@{/Producto/productos}">MEGAFARMA
+				- ADMINISTRACION</a>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse " id="navbarSupportedContent">
+				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/Catalogo/homeinicio}">Inicio</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/Producto/productos}">Productos</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/Proveedor/frmMantProveedor}">Proveedor</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/Empleado/frmMantEmpleado}">Empleado</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/Cliente/listar}">Lista de Usuarios</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/Atencion/reclamos}">G. Reclamo</a></li>
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{/Solicitud/listar_solicitudes}">G. Solicitud</a></li>
+					<li><a class="nav-link"
+						th:href="@{/Valoracion/listar}">Valoracion</a></li>
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-bs-toggle="dropdown" aria-expanded="false">Administrador</a>
+						<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<li><a class="dropdown-item" th:href="@{/login}">Cerrar
+									Sesion</a></li>
+						</ul></li>
+				</ul>
+
+			</div>
+
+		</div>
+	</nav><br><br><br><br>
+
+	<nav th:fragment="menuFarmaPresentacion"
+		class="navbar fixed-top navbar-expand-lg nav-superior-cliente navbar-dark  p-2">
+		<div class="container-fluid">
+			<span class="navbar-brand text-white "><a
+				class="megafarma-inicio" href="#"><strong>MEGAFARMA</strong></a></span>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<br>
+					<li class="nav-item"><a
+						class="btn btn-outline-primary text-white p-2" th:href="@{/login}">ADMINISTRAR</a></li>
+					<li class="nav-item"><a
+						class="btn btn-outline-primary text-white p-2" href="#laboratorio">Laboratorio</a></li>
+					<li class="nav-item"><a
+						class="btn btn-outline-primary text-white p-2" href="#nosotros">Nosotros</a></li>
+
+				</ul>
+
+				<!-- -CODIGO DE BRIAN ALBITES Modificado  -->
+				<div class="dropdown">
+				<!-- 	<button class="btn btn-secondary dropdown-toggle fs-5"
+						type="button" id="Tamaño-letra" data-bs-toggle="dropdown"
+						aria-expanded="false">Tamaño de la letra</button>
+					<ul class="dropdown-menu" aria-labelledby="#Tamaño-letra">
+						<li><button type="button" id="pequeña"
+								class="dropdown-item btn  fs-4">Pequeña</button></li>
+						<li><button type="button" id="mediana"
+								class="dropdown-item btn  fs-4">Mediana</button></li>
+						<li><button type="button" id="grande"
+								class="dropdown-item btn  fs-4">Grande</button></li>
+					</ul>-->
+				</div>
+
+
+				<!-- ---SEFUINDA FORMA DE EMERGENCIA--- -->
+				<!-- agregar la luna -->
+
+				<!--  <i class="bi bi-brightness-high-fill icono-sol text-warning  fs-3 "></i>-->
+				<div class="form-check form-switch fs-3">
+
+					<!-- 
+					<input class="form-check-input bg-ligth" type="checkbox"
+						role="switch" id="checkoscuro"> <i
+						class="bi bi-moon-fill text-light "></i>
+					-->
+				</div>
+
+
+				<a class="btn btn-outline-primary text-white  float-end p-2"
+					data-bs-toggle="offcanvas" href="#iniciar-sesion" role="button"
+					aria-controls="offcanvasExample"> Iniciar sesion </a>
+			</div>
+		</div>
+	</nav>
+
+	<!--  NAV DE USURIO -->
+
+	<nav th:fragment="menuFarma"
+		class="navbar fixed-top navbar-expand-lg nav-superior-cliente navbar-dark  p-2">
+		<div class="container-fluid">
+			<span class="navbar-brand text-white "><a
+				class="megafarma-inicio" href="#"><strong>MEGAFARMA</strong></a></span>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+					<br>
+
+
+
+					<!--  -<li class="nav-item">
+						<!-- -CODIGO DE BRIAN ALBITES Modificado  
+						<div class="dropdown">
+							<button class="btn btn-secondary dropdown-toggle fs-5"
+								type="button" id="Tamaño-letra" data-bs-toggle="dropdown"
+								aria-expanded="false">Tamaño de la letra</button>
+							<ul class="dropdown-menu" aria-labelledby="#Tamaño-letra">
+								<li><button type="button" id="pequeña"
+										class="dropdown-item btn  fs-4">Pequeña</button></li>
+								<li><button type="button" id="mediana"
+										class="dropdown-item btn  fs-4">Mediana</button></li>
+								<li><button type="button" id="grande"
+										class="dropdown-item btn  fs-4">Grande</button></li>
+							</ul>
+						</div>
+					</li>-->
+
+					<!-- ---SEFUINDA FORMA DE EMERGENCIA--- -->
+					<!-- agregar la luna -->
+					<!-- 		<li class="nav-item"><i
+						class="bi bi-brightness-high-fill icono-sol text-warning  fs-3 "></i>
+					</li>
+					<li class="nav-item">
+						<div class="form-check form-switch fs-3">
+
+							<input class="form-check-input bg-ligth" type="checkbox"
+								role="switch" id="checkoscuro"> <i
+								class="bi bi-moon-fill text-light "></i>
+
+						</div>
+					</li>-->
+				</ul>
+
+				<!-- correo del usuario  -->
+			<a type="button" class="actualizarValoracion btn btn-outline-primary text-white  text-white float-end p-2 valoracion " 
+					data-bs-toggle="modal"   data-bs-target="#ventanavalor">
+ 				   Valoracion
+  						</a>
+				<a class="btn btn-outline-primary text-white  float-end p-2"
+					th:href="@{/Catalogo/home}">Inicio</a> <a
+					class="btn btn-outline-primary text-white  float-end p-2"
+					th:href="@{/Detalles/cart}"> <i class="bi bi-cart4">
+						Finalizar Carrito</i></a><a class="btn btn-outline-primary text-white p-2"
+					th:href="@{/Catalogo/homeinicio}"> Cerrar sesion </a>
+				<button class="btn btn-outline-primary text-white  float-end p-2"
+					type="button" data-bs-toggle="offcanvas"
+					data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"
+					th:text="${correous}" id="correousuario"></button>
+
+			</div>
+		</div>
+	</nav>
+
+	<!--  DATOS DEL USUARIO -->
+	<div th:fragment="usuariodatos" class="offcanvas offcanvas-end"
+		tabindex="-1" id="offcanvasRight"
+		aria-labelledby="offcanvasRightLabel">
+		<div class="offcanvas-header headerdatos">
+			<h5 id="offcanvasRightLabel" th:text="${saludo}"></h5>
+			<button type="button" class="btn-close text-reset"
+				data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body cuerpodatos">
+
+			<div class="mb-3 row">
+				<div class="col-sm-10 text-white">
+					<h4>Tu correo electrónico:</h4>
+					<br>
+					<input type="email" class="form-control" th:value="${correous}"
+						id="correousuario" readonly>
+				</div>
+				<div class="col-sm-10 text-white">
+					<br>
+					<h4>Tus nombres:</h4>
+					<br>
+					<input type="email" class="form-control" th:value="${nomcli}"
+						id="correousuario" readonly>
+				</div>
+				<br>
+				<div class="col-sm-10 text-white">
+					<br>
+					<h4>Tus apellidos:</h4>
+					<br>
+					<input type="email" class="form-control" th:value="${apecli}"
+						id="correousuario" readonly>
+				</div>
+				<br>
+				<div class="col-sm-10 text-white">
+					<br>
+					<h4>Tu DNI:</h4>
+					<br>
+					<input type="email" class="form-control" th:value="${dnicli}"
+						id="correousuario" readonly>
+				</div>
+
+			</div>
+			<br>
+			<br>
+			<h4 class="text-white ">¿Quieres cambiar tu contraseña?</h4>
+			<br>
+			<button type="button"
+				class="btn btn-primary d-grid gap-4 col-12 mx-auto botonprueba"
+				data-bs-toggle="modal" data-bs-target="#exampleModal"
+				id="botonAbrir">CAMBIAR CONTRASEÑA</button>
+
+
+		</div>
+	</div>
+
+	<!--  NAV DE USURIO EMPLEADO -->
+
+	<nav th:fragment="menuFarma2"
+		class="navbar navbar-expand-lg navbar-dark bg-primary p-2">
+		<div class="container-fluid">
+			<span class="navbar-brand text-white"><b>MEGAFARMA -
+					EMPLEADO</b></span>
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<a class="btn btn-outline-warning text-white p-2"
+					th:href="@{/login}">Cerrar Sesión</a> <a
+					class="btn btn-outline-warning text-white p-2"
+					th:href="@{/Catalogo/homeinicio}">Inicio</a>
+			</div>
+
+		</div>
+	</nav>
+
+	<!--  Cuerpo emergente del iniciar sesion -->
+
+	<div th:fragment="inciarsesion" class="offcanvas fondo-off offcanvas-start"
+		tabindex="-1" id="iniciar-sesion"
+		aria-labelledby="offcanvasExampleLabel">
+		<div class="offcanvas-header text-light ">
+			<img
+				src="https://media.discordapp.net/attachments/935382445803597854/958498394756755526/LOGOFARMACIA.png"
+				class="bg-light" width="150px" alt=""> <label for="">Iniciar
+				sesion</label>
+			<button type="button" class="btn-close text-reset bg-danger"
+				data-bs-dismiss="offcanvas" aria-label="Close"></button>
+		</div>
+		<div class="offcanvas-body text-light ">
+			<form th:action="@{/Catalogo/iniciarsesion}" method="post">
+				<label for="">Correo</label> <br> <br> 
+				<input type="email"
+					class="form-control" placeholder="ejemplo@ejemplo.com"
+					aria-label="Username" aria-describedby="basic-addon1" name="correo">
+				<br> 
+				<label for="">Contraseña</label> <br> <br> 
+				<input
+					type="password" class="form-control"
+					placeholder="*************************" aria-label="Username"
+					aria-describedby="basic-addon1" name="contra"> <br>
+				<button type="submit"
+					class="btn  boton text-white d-grid gap-2 col-12 mx-auto">Ingresar</button>
+			</form>
+			<br>
+			<button type="button"
+				class="btn btn-primary  d-grid gap-2 col-12 mx-auto"
+				data-bs-toggle="modal" data-bs-target="#registrarse"
+				id="registronuevo">Registrate</button>
+			<br>
+			<!----------------------CARUSEL INFERIOR ES UN DETALLE----------------------------------->
+
+			<div id="carouselExampleControls" class="carousel slide"
+				data-bs-ride="carousel">
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						<img
+							src="https://stjude.scene7.com/is/image/stjude/covid-social-distancing-spanish?fmt=png-alpha&wid=500"
+							height="220px" class="d-block w-100" alt="...">
+					</div>
+					<div class="carousel-item">
+						<img
+							src="https://cdn.www.gob.pe/uploads/campaign/photo/000/000/839/10032020_CAMPA%C3%91A_GOB_CORONAVIRUS_V_2.jpg"
+							height="220px" class="d-block w-100" alt="...">
+					</div>
+					<div class="carousel-item">
+						<img
+							src="https://pbs.twimg.com/media/ETKQHNKXYAE_G7_?format=jpg&name=large"
+							height="220px" class="d-block w-100" alt="...">
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button"
+					data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button"
+					data-bs-target="#carouselExampleControls" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- TERMINOS Y CONDICIONES -->
+
+	<div th:fragment="terminos&condiciones" class="modal fade"
+		id="terminos" data-bs-backdrop="static" data-bs-keyboard="false"
+		tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header text-light bg-primary">
+					<h5 class="modal-title" id="staticBackdropLabel">Terminos y
+						condiciones</h5>
+
+				</div>
+				<div class="modal-body">
+					1. Es indispensable la conexion a internet para interactuar con el
+					pedido a realizar. <br>2. Se tiene que tener en cuenta la
+					ubicacion del local, para realizar el recojo de los productos. <br>3.
+					Al acercarse a recoger el producto es necesario acercarse con el
+					dni y doble mascarilla.<br>4. Para poder acceder al uso de la
+					aplicacion es necesario crearse una cuenta. <br>5. Se pide
+					obligatoriamente rellenar los espacios en blanco de cada formuario
+					al crear la uenta. <br>6. Favor de validar su correo el cual
+					se le enviara futuras actualizaciones , ofertas y noticias. <br>7.
+					No olvidar la contraseña de ser asi , usar su correo de respaldo. <br>8.
+					Los metodos de pago varian dependiendo de su eleccion , es
+					obligatorio el pago. <br>9. Si tiene consultas puede
+					comunicarse con el area de atencion al cliente. <br>10. Queja
+					alguna o reclamo el sistema cuenta con un area el cual usted puede
+					ingresar con su usuario. <br>11. No olvidar que el local tiene
+					un area designada. <br>12. Los pedidos por aplicacion hechos
+					en la madrugada seran atendidos a primera hora del mismo dia 8am. <br>13.
+					No es posible realizar transferencia. <br>14. Las recetas
+					medicas seran enviadas por medio de una captura. <br>15. Para
+					la comodidad de los cientes es recomendablle resolver las dudas en
+					atencion al cliente.<br>16. El modo de pago en efectivo, se
+					recuerda que todo billete falso sera roto y la compra sera
+					cancelada. <br>17. El modo de pago yape sera cancelado por
+					medio de una foto del pago. <br>18. Se recomienda al cliente
+					revisar su pedido antes de retirarse ya que elemento retirado no
+					sera regresado. <br>19. Se recomienda no traer niños al local
+					por la afluencia de clientes. <br>20. Sin embargo madre e hijo
+					deben acudir con mascarilla. <br>21. Los inyectables deben ser
+					avisados previamentes por un canal que tenemos y enviar el tipo de
+					intyectable. <br>22. Los usarios que han recibido algun
+					intectable pueden retirarse, previo pago con anterioridad. <br>23.
+					En caso que sea entregado un producto vencido se entregara otro
+					producto sin costo alguno. <br>24. Las promociones de
+					productos que tengan ofertas de marca solo se aplaza segun la
+					empresa dicha. <br>25. No se puede realizar transacciones por
+					BCP,interbank,Scotiabank,BBVA. <br>26. Los elementos que se
+					ingieren es importante revisar la fecha de vencimiento como se ha
+					dicho. <br>27. La bolesta se hara por medio de un correo
+					electronico , es opcional imprimir.
+					<hr>
+					<h5>Requistos y beneficios de ser usuario.</h5>
+					1. Tener correo electronico obligatoriamente, noticias y detalles
+					seran enviados por ese medio aparte de la opcion de cambiar
+					contraseña.<br>2. Ser mayor de edad, lo mas importante es que
+					un adulto maneje los datos y los gastos como usuario y
+					responsabilida al comprar los productos y/o autorizacion de un
+					adulto.<br>3. Leer atentamente cada uno de los datos y
+					caracteristicas al realizar la compra.<br>4. Obligatoriamente
+					contar con conexion a internet por medio de wifi o datos por el
+					caso de que necesita informar directamente a la tienda para
+					realizar el proceso de preparacion del producto. <br>5. Es
+					opcional el tema de la camara ya que en algunas ocaciones se
+					procedera con el envio de un medicamente y/o receta medica.<br>6.
+					Los inyectables son opcion al momento de enviar una imagen para
+					facilitar a los empleados al encontrar el medicamento.<br>7.
+					El Área de atencion al cliente se rije por el envio de un correo
+					electronico el cual debe ser el correo del usuario o alegado como
+					tambien una captura opcional indicando el suceso por el cual el
+					usuario tiene inconvenientes. <br>8. El Área de atencion al
+					cliente no se responsabiliza por el horario a atencion.<br>9.
+					El Área de atencion al cliente regulariza la entrada y afluencia de
+					las notificaciones.<br>10. Es necesario acercarse al la tienda
+					en fisica ya que el local no cuenta con delivery, sin embargo su
+					pedido se encontrara listo para recibir.<br>11. Al momento de
+					realizar un pedido se le notifica a su correo electronico y se le
+					pide que confirme con su contraseña por motivos de seguridad.<br>12.
+					Los metodos de pagos son opcionales segun su eleccion del cliente
+					en cuanto a pago fisico o efectivo es opcional. <br>13. Las
+					promociones de los productos seran noticados directamente a su
+					correo electronico. <br>14. No todos los productos cuentan con
+					rebajas , descuentos u ofertas , la aplicacion mostrara la lista de
+					los productos y ademas en el correo llegara un folleto indicando
+					los beneficios. <br>15. La aplicacion por el uso constante de
+					los usuarios, a esta se le debe realizar un mantenimiento el cual
+					puede dejar un momento la plataforma caida de todas maneras los
+					usuarios seran informados de manera inmediata.<br>16. El
+					beneficio mayor indicado hasta el momento seria las indicaciones
+					por correo web debido a que los clientes que no tengan creados una
+					cuenta no podran disfrutar de estas notificaciones e indicaciones.<br>17.
+					La aplicacion busca facilitar y reducir el tiempo de los clientes
+					para realizar mas acciones diariamente. <br>18. La aplicacion
+					genera libertad de medio de pago y seguridad al realizar un pago.
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary"
+						data-bs-dismiss="modal" aria-label="Close">Entendido</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<nav th:fragment="piePresentacion"
+		class="navbar navbar-expand-lg fixed-bottom navbar-inferior navbar-dark p-0 m-0">
+		<div class="container-fluid">
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#nav-inferior"
+				aria-controls="navbarSupportedContent" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="nav-inferior">
+				<div class="container ">
+					<div class="row ">
+						<div class="col-sm-4  col-12  text-center">
+							<a
+								class="d-flex justify-content-center align-self-center fs-4 text-light nav-solicitudes"
+								target="_blank" th:href="@{/Solicitud/ingreso}"><strong>Solicitudes</strong></a>
+						</div>
+						<div class="col-sm-4 col-12 text-center">
+							<button type="button" class="nav-terminos btn  text-light"
+								data-bs-toggle="modal" data-bs-target="#terminos">
+								<strong>Terminos y condiciones</strong>
+							</button>
+						</div>
+						<div class="col-sm-4 col-12 text-center">
+							<a
+								class="d-flex justify-content-center align-self-center fs-4 text-light nav-reclamaciones"
+								target="_blank" th:href="@{/Atencion/LReclamaciones}"><strong>Libro
+									de reclamacion</strong></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+</body>
+
+</html>

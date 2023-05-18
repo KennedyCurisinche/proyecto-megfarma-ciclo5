@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head th:insert="layout::head">
+<meta charset="UTF-8">
+</head>
+<script type="text/javascript" th:src="@{/assets/js/Carrito.js}"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+<script language="JavaScript">
+	var DivTxt = new Array()
+	DivTxt[0] = " "
+	DivTxt[1] = "914952949"
+	DivTxt[2] = "923456789"
+
+	function getText(slction) {
+		txtSelected = slction.selectedIndex;
+		document.getElementById('textDiv').value = DivTxt[txtSelected];
+		//document.getElementById('textDiv').innerHTML = DivTxt[txtSelected];
+	}
+</script>
+<body class="bg-primary">
+	<nav th:insert="layout::menuFarma"></nav>
+
+	<br> <br> <br>
+	<div class="container">
+
+		<div class="card mb-4">
+
+			<!-- Inicio del borde -->
+
+			<div class="card-body">
+				<br>
+				<form th:action="@{/Detalles/despacho}" method="post">
+				<div class="row">
+					<div class="col-12 col-sm-12 col-lg-10">
+						<!-- Tabla de los detalles -->
+						<table class="table table-primary table-striped" id="tblCarrito">
+							<thead>
+								<tr>
+									<th scope="col">NOMBRE PRODUCTO</th>
+									<th scope="col">PRECIO</th>
+									<th scope="col">CAN</th>
+									<th scope="col">TOTAL</th>
+									<th scope="col">QUITAR</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="detalle : ${agregados}">
+									<td th:text="${detalle.nompro}"></td>
+									<td th:text="${detalle.precpro}"></td>
+									<td th:text="${detalle.canpro}"></td>
+									<td th:text="${detalle.total}"></td>
+									<td><a
+										th:href="@{/Detalles/eliminarProducto/{id} (id=${detalle.id_producto}) }"
+										class="btn bg-danger rounded-circle text-white"><i class="bi bi-trash3-fill"></i></a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+
+
+
+					<div class="col-12 col-sm-12 col-lg-2">
+						<h2 class="card-title">PRECIO TOTAL</h2>
+
+						<ul class="list-group">
+							<li class="list-group-item" style="text-align: right;"><h5
+									th:text="${orden.totalorden}"></h5></li>
+						</ul>
+						<br>
+						<button type="submit" class="btn btn-primary" id="agregarProducto">FINALIZAR</button>
+					</div>
+
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

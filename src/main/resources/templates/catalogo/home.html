@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head th:insert="layout::head">
+<meta charset="UTF-8">
+</head>
+<script type="text/javascript" th:src="@{/assets/js/Catalogo.js}"></script>
+<link rel="stylesheet" th:href="@{/assets/css/tonos.css}">
+<link rel="stylesheet" th:href="@{/assets/css/Style_home.css}">
+<link rel="stylesheet" th:href="@{/assets/css/datoscliente.css}">
+<script th:src="@{/assets/js/lib/sweetalert2.min.js}"></script>
+<link rel="stylesheet" th:href="@{/assets/css/sweetalert2.min.css}">
+<body class="fondoclaro">
+
+	<!-- NAV-CABECERA USUARIO -->
+	<nav th:insert="layout::menuFarma"></nav>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<!-- DATOS DE USUARIO  -->
+	<div th:insert="layout::usuariodatos"></div>
+
+	<!-- -----------------INICIO DE CATALOGO -  MUESTRA LOS PRODUCTOS----------------------- -->
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12 col-xs-12 col-sm-6 col-md-4  col-xl-2"
+				th:each="producto :${listproducto}">
+				<div class="card card-producto contenedor">
+					<div class="card__content">
+					<img th:src="${producto.imagen_producto}" class="card-img-top bg-white" style="width:100%;border-radius: 10px;"
+						width="100%" height="230px">
+					<div class="card-body cardclaro text-light">
+						<h5 class="card-title"style="height: 100px;" th:text="${producto.nombre_producto}"></h5>
+						<h6 class="card-text"  style="height: 30px;" th:text="${producto.nombremarca}"></h6>
+						<span class="card-text" style="height: 100px;">Precio unidad:</span> <strong
+							class="card-text fs-3" th:text="${producto.precio_unitario}"></strong>
+						<br> <br>
+						<button type="button"
+							class="boton-chido btn btncomprarclaro  d-grid gap-4 col-12 mx-auto btnagregarmedicamento"
+							th:data-id="${producto.id_producto}"
+							th:data-imagen="${producto.imagen_producto}"
+							th:data-nombre="${producto.nombre_producto}"
+							th:data-prescripcion="${producto.prescripcion}"
+							th:data-presentacion="${producto.presentacion}"
+							th:data-precio="${producto.precio}"
+							th:data-preciounitario="${producto.precio_unitario}"
+							th:data-stock="${producto.stock}"
+							th:data-idcategoria="${producto.id_categoria_producto}"
+							th:data-idmarca="${producto.id_marca_producto}"
+							th:data-estado="${producto.is_active}">COMPRAR</button>
+					</div>
+				</div>
+				
+				</div><br>
+			</div><br><br><br>
+		</div>
+	</div>
+
+	<form th:action="@{/Detalles/carrito}" method="post">
+		<div class="modal fade oscuro" id="modalAgregarProducto" tabindex="-1"
+			aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-sm">
+				<div class="modal-content modalfondo">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">PRODUCTO LISTO
+							PARA AGREGAR</h5>
+						<button type="button" class="btn-close bg-danger"
+							data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+
+						<div class="container">
+							<div class="row">
+								<div class="col-12 col-md-4 p-2 d-flex align-items-center">
+									<strong>NOMBRE</strong>
+								</div>
+								<div class="col-12 col-md-8 p-2">
+									<input class="form-control" type="text" id="txtnombre"
+										readonly="true" name="nombre">
+								</div>
+								<div class="col-12 col-md-8 p-2 d-flex align-items-center">
+									<strong>PRECIO UN:</strong>
+								</div>
+								<div class="col-12 col-md-4 p-2">
+									<input class="form-control" type="number" id="precioUnitario"
+										readonly="true" name="precio">
+								</div>
+								<div class="col-12 col-md-8 p-2 d-flex align-items-center">
+									<strong>CANTIDAD(*):</strong>
+								</div>
+								<div class="col-12 col-md-4 p-2">
+									<input class="form-control" type="number" id="cantidad"
+										name="cantidad">
+								</div>
+								<div class="col-12 col-md-6 p-2 d-flex align-items-center">
+									<a class="botones btn btn-primary text-light" type="button"
+										id="calcular">CALCULAR</a>
+								</div>
+								<div class="col-12 col-md-6 p-2">
+									<input class="form-control" type="number" id="resultado"
+										readonly="true">
+								</div>
+								<input type="hidden" th:value="${dnicli}" name="dni" /> <input
+									type="hidden" th:value="${apecli}" name="apellido" /> <input
+									type="hidden" th:value="${nomcli}" name="nombres" /> <input
+									type="hidden" th:value="${correous}" name="correo" /> <input
+									type="hidden" th:value="${idc}" name="idc" />
+							</div>
+						</div>
+						<br> <span>(*)El campo debe ser rellenado, si desea
+							comprar.</span> <input type="hidden" id="hiddenproducto" name="id">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn cerrar text-white"
+							data-bs-dismiss="modal">Cerrar</button>
+						<button type="submit" id="agrega"
+							class="botones btn btn-primary text-light">Agregar
+							Carrito</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<br>
+		
+		
+	<!-- ---------------------------- -->
+		<!-- -CODIGO DE VALORACION Y JS -->	
+	
+	
+<div class="modal fade oscuro" id="ventanavalor" data-bs-keyboard="false"
+		tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header ">
+					<h5 class="modal-title" id="staticBackdropLabel">Valore
+						nuestro Servicio</h5>
+				</div>
+				<div class="modal-body text-center bg-secondary text-light">
+					<div class="col-12">
+						<h5 class="card-title bg-secondary text-light">De acuerdo al funcionamiento del sistema</h5>
+						<h5 class="card-title bg-secondary text-light">¿Con cuantas estrellas nos recomendaria?</h5>
+						
+						<p class="card-text"></p>
+						
+						<span class="fa fa-star star" onclick="calificar(this)" id="1estrella"></span> 
+						<span class="fa fa-star star" onclick="calificar(this)" id="2estrella"></span> 
+						<span class="fa fa-star star" onclick="calificar(this)" id="3estrella"></span>
+						<span class="fa fa-star star" onclick="calificar(this)" id="4estrella"></span> 
+						<span class="fa fa-star star" onclick="calificar(this)" id="5estrella"></span><br> <br>
+						<button class="btn btn-primary" type="button" aria-label="Close"
+							data-bs-dismiss="modal" onclick="Mensaje()" id="calificar">Calificar</button>
+						<br>
+						<br>
+						
+						<input type="hidden" class="form-control" th:value="${calificacion}" id="restvaloramiento"> 
+						<input type="hidden" class="form-control text-dark" th:value="${idvalor}" id="hiddenvaloramiento">
+				
+	
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		var contador;
+		function calificar(item) {
+			contador = item.id[0];
+			let nombre = item.id.substring(1);
+			for (let i = 0; i < 5; i++) {
+
+				if (i < contador) {
+
+					document.getElementById((i + 1) + nombre).style.color = "orange";
+				} else {
+					document.getElementById((i + 1) + nombre).style.color = "black";
+
+				}
+
+			}
+		}
+
+		function Mensaje() {
+
+			document.getElementById("restvaloramiento").value = contador;
+
+		}
+	</script>
+	
+	
+	<!-- --------------------------- -->
+	<!-- -------------------TERMINOS Y CONDICIONES- Modal de terminos , se abre abajo-------------------------------------------- -->
+
+	<section class="container-fluid ">
+	<input type="hidden" id="idcliente" th:value="${idc}" readonly />
+		<div class="row">
+			<div class="col-4">
+				<!-- Modal -->
+				<div th:insert="layout::terminos&condiciones"></div>
+				<br>
+			</div>
+		</div>
+		<br /> <br />
+	</section>
+
+	<!-- ---Nav bar inferior----Solicitudes Terminos Reclamaciones-------- -->
+	<nav th:insert="layout::piePresentacion"></nav>
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header headercambio">
+					<h5 class="modal-title text-center" id="exampleModalLabel">Cambiar Contraseña</h5> 
+					<button type="button" class="btn-close" data-bs-dismiss="modal"
+						aria-label="Close"></button>
+				</div>
+				<div class="modal-body cuerpocambio">
+					<form th:action="@{/Catalogo/ActualizarCli}" method="post"
+						onsubmit="alert('Si la contraseña se registró correctamente, tendrás que logearte.'); return true">
+						<input type="hidden" th:value="${idc}" name="idcli"> <input
+							type="hidden" th:value="${concli}" name="concli">
+						<div class="input-group mb-3">
+						<h5 class="text-white">Ingresa tu contraseña que tienes actualmente:</h5>
+							<span class="input-group-text" id="inputGroup-sizing-default">Actual</span>
+							<input type="password" class="form-control"
+								aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default" name="compararcon">
+						</div>
+						<div class="input-group mb-3">
+						<h5 class="text-white">Ingresa la contraseña nueva que quieres usar:</h5>
+							<span class="input-group-text" id="inputGroup-sizing-default">Nueva</span>
+							<input type="password" class="form-control"
+								aria-label="Sizing example input"
+								aria-describedby="inputGroup-sizing-default" name="nuevacon">
+						</div>
+						<div class="modal-footer">
+
+							<button type="submit" class="btn btn-primary">Guardar Contraseña</button>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</body>
+</html>

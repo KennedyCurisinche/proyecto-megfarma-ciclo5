@@ -1,0 +1,164 @@
+/*		parte de calificacion o validacion -luego reemplazar		*/
+ 
+ /*CAMBIO REPENTINO DE LOS DATOS*/
+.oscuro{
+	backdrop-filter: blur(5px);
+	 box-shadow: 0 5px 15px rgba(0, 0, 0, .8 );
+}
+/* From uiverse.io by @adamgiebl */
+.boton-chido {
+ /*background: linear-gradient(-45deg, #00D5A8, #00BBCD);*/
+ background-size: 800% 400%;
+ padding: 5px 5px;
+ display: inline-block;
+ border: none;
+ border-radius: 10px;
+ font-size: 17px;
+ font-weight: 700;
+ background:#fff;
+ color: #746698;
+ transition: all .5s ease-in-out;
+ animation: gradient 10s infinite cubic-bezier(.62, .28, .23, .99) both;
+}
+
+.boton-chido:hover {
+ animation: gradient 3s infinite;
+ transform: scale(1.05);
+}
+
+.boton-chido:active {
+ animation: gradient 3s infinite;
+ transform: scale(0.8);
+}
+
+@keyframes gradient {
+ 0% {
+  background-position: 0% 50%;
+ }
+
+ 50% {
+  background-position: 100% 50%;
+ }
+
+ 100% {
+  background-position: 0% 50%;
+ }
+}
+
+/*			Card modo hover 		*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ /*CAMBIO REPENTINO DE LOS DATOS*/
+ .contenedor{
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     
+     
+ }
+.star{
+	cursor: pointer;
+}
+
+/*			Offcanvas deslizable izquierdo	  */			
+.deslizable-login{
+	background: rgb(25, 4, 121);
+}
+
+.deslizable-cuerpo{
+	background: rgb(25, 4, 121)
+}
+
+
+
+.card-producto{
+	width: 13rem;
+}
+/*			LABORATORIO CODIGO NUEVO			*/
+.contenedor{
+     width: 100%;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     
+     
+ }
+ 
+ /*		Card - fachero		*/
+ 
+/* From uiverse.io by @adamgiebl */
+.card {
+   	
+    border-radius: 10px;
+    padding: 5px;
+    box-shadow: rgba(53, 172, 246, 0.2) 0 15px 30px -5px;
+    background-image: linear-gradient(144deg,#907FF5, #2EDBEC 50%,#000FC6);
+    color: #fff;
+    width:100%;
+   }
+   
+   .card__content {
+    	background: #2980B9;  
+background: -webkit-linear-gradient(to right, #FFFFFF, #6DD5FA, #2980B9);  
+background: linear-gradient(to right, #1324B8, #005AE6, #0080F6); 
+    
+    border-radius: 17px;
+  	
+    color: #fff;
+    
+   }
+
+/****************************/
+/*			IMAGEN CARUSEL GENERAL			*/
+.img-carusel{
+	width:100%;
+	height: 700px;
+}
+
+.logo2{
+     z-index: 3;
+     justify-content: center;
+     align-items: center center;
+     top: -50px;
+ }
+/*			Informacion de la empresa msion y vision				*/
+.titulo-informacion{
+	font-size: 40px;
+}
+
+
+.text-m-v{
+	text-align: justify;
+}
+
+/*				Footer nav-inferior		*/
+
+.navbar-inferior{
+	background: #144A9E;
+}
+
+.nav-solicitudes{
+	text-decoration: none;  margin-top: 10px;
+}
+
+.nav-terminos{
+	font-size: 25px;
+}
+
+.nav-reclamaciones{
+	text-decoration: none; margin-top: 10px;
+}

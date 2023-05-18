@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head th:insert="layout::head">
+<meta charset="UTF-8">
+</head>
+<script type="text/javascript" th:src="@{/assets/js/Catalogo.js}"></script>
+<link rel="stylesheet" th:href="@{/assets/css/tonos.css}">
+<link rel="stylesheet" th:href="@{/assets/css/homeinvitado.css}">
+
+<script type="text/javascript" th:src="@{/assets/js/Cliente.js}"></script>
+<link rel="stylesheet" th:href="@{/assets/css/sweetalert2.min.css}">
+<script th:src="@{/assets/js/lib/sweetalert2.min.js}"></script>
+
+<body class="fondoclaro">
+
+	<!-- PARTE DE VALORACION NO TOCAR---- -->
+	<nav th:insert="layout::menuFarmaPresentacion"></nav>
+
+	<br>
+	<br>
+
+	<!-- -Iniciar sesion como offcanvas deslizable-- 	COMPAÑERA SANARBRIA	-->
+	<!-- ---FORMULARIO DE INICIAR SESION -->
+
+	<div th:insert="layout::inciarsesion"></div>
+
+	<!-- ----En el login hay un REGISTRARSE--- -->
+	<!-- -----VENTANA DE REGISTRO--- 		--- -->
+	<div class="modal fade" id="registrarse" data-bs-backdrop="static"
+		tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+
+			<form>
+
+				<div class="modal-content">
+					<div class="modal-header bg-primary text-light">
+						<h3 class="modal-title " id="staticBackdropLabel">Registrate!</h3>
+					</div>
+					<div class="modal-body bg-secondary">
+						<div class="input-group mb-3">
+							<span class="input input-group-text">Nombre</span> 
+							<input
+								type="text" class="form-control" placeholder="Escriba su nombre"
+								id="nomcli" maxlength="80" disabled="true">
+						</div>
+						<div class="alert alert-danger" role="alert" id="alertNOMBRE">A simple
+								danger alert—check it out!</div>
+						<div class="input-group mb-3">
+							<span class="input input-group-text">Apellido</span> <input
+								type="text" class="form-control"
+								placeholder="Escriba su Apellido" id="apecli" maxlength="80" disabled="true">
+						</div>
+						<div class="alert alert-danger" role="alert" id="alertAPELLIDO">A simple
+								danger alert—check it out!</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text">DNI</span> <input maxlength="8"
+								type="text" class="form-control" placeholder="xxxxxxxx"
+								id="dnicli"> <button type="button" class="btn bg-success text-white" id="llenardatos">VERIFICAR</button>
+						</div>
+						<div class="alert alert-danger" role="alert" id="alertDNI">A simple
+								danger alert—check it out!</div>
+						<div class="input-group mb-3">
+							<span class="input input-group-text">Fecha de nacimiento</span> <input
+								type="date" class="form-control" placeholder="Su edad es..."
+								id="fc_nac">
+						</div>
+						<div class="alert alert-danger" role="alert" id="alertFECHA">A simple
+								danger alert—check it out!</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text">Correo</span> <input type="text"
+								class="form-control" placeholder="Correo electronico"
+								id="corcli">
+						</div>
+						<div class="alert alert-danger" role="alert" id="alertCORREO">A simple
+								danger alert—check it out!</div>
+						<div class="input-group mb-3">
+							<span class="input-group-text">Contraseña</span> <input
+								type="password" class="form-control" placeholder="Contraseña"
+								id="concli">
+						</div>
+						<div class="alert alert-danger" role="alert" id="alertCONTRASENIA">A simple
+								danger alert—check it out!</div>
+						
+						
+						<input type="hidden" id="hiddencliente" value="0">
+
+						<button type="button" class="btn btn-primary" id="acepto">Acepto</button>
+						<a class="text-light p-2 nabar-link" data-bs-toggle="modal"
+							data-bs-target="">Terminos y Condiciones</a>
+					</div>
+					<div class="modal-footer bg-secondary">
+						<button type="button" class="btn btn-danger"
+							data-bs-dismiss="modal">Cancelar</button>
+						<button type="button" class="btn btn-success" id="boton_aceptar"> Crear usuario</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- -----------------CARROUSEL-PRINCIPAL DE LA PAGINA-------------------------------- -->
+	<!-- ----------------------Inicio de la pagina ------------------ -->
+
+	<div id="carouselExampleCaptions" class="carousel slide"
+		data-bs-ride="carousel">
+		<div class="carousel-indicators">
+			<button type="button" data-bs-target="#carouselExampleCaptions"
+				data-bs-slide-to="0" class="active" aria-current="true"
+				aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleCaptions"
+				data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleCaptions"
+				data-bs-slide-to="2" aria-label="Slide 3"></button>
+		</div>
+		<div class="carousel-inner">
+			<div class="carousel-item active" id="nav-1er-img">
+
+				<div class="carousel-caption d-none d-md-block ">
+					<img
+						src="https://media.discordapp.net/attachments/935382445803597854/958498394756755526/LOGOFARMACIA.png"
+						class="logo2 " alt="" />
+					<h2>Mejores en calidad y precio</h2>
+				</div>
+			</div>
+			<div class="carousel-item" id="nav-2da-img">
+				<div class="carousel-caption d-none d-md-block">
+					<h2>Contamos con todo lo necesario para mejorar tu calidad de
+						vida</h2>
+				</div>
+			</div>
+			<div class="carousel-item" id="nav-3era-img">
+				<div class="carousel-caption d-none d-md-block">
+					<h2>Contactanos!!, estamos para ti</h2>
+				</div>
+			</div>
+		</div>
+		<button class="carousel-control-prev" type="button"
+			data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+				class="visually-hidden">Previous</span>
+		</button>
+		<button class="carousel-control-next" type="button"
+			data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span> <span
+				class="visually-hidden">Next</span>
+		</button>
+		<br /> <br />
+	</div>
+
+	<!-- -----------------INICIO DE CATALOGO -  MUESTRA LOS PRODUCTOS (SUPUESTO INICIO)----------------------- -->
+	<!-- ---------------------------Mision y vision-------------------------------------------- -->
+	<div>
+		<div class="container" id="nosotros">
+			<br /> <br /> <br />
+			<div class="text-center">
+				<span
+					class="primary badge rounded-pill  bg-primary text-center titulo-informacion">MegaFarma</span><br>
+				<br> <br>
+				<p class="floro">Megafarma inicio como un proyecto familiar ,
+					luego de mucho trabajo y scarificio losgramos salir adelante, desde
+					hace mucho nos hemos encargado de ser los mejores de nuestra zona ,
+					nuestros clientes no tiene queja alguna sobre nuestros productos y
+					nos ayudan a mejorar , concemas sobre nosotros y se parte de esta
+					gran familia que quiere mejorar la familia de miles de peruanos.</p>
+			</div>
+		</div>
+		<div class="container sombra-floro">
+			<div class="row sombra-floro">
+				<div class="col-xl-4 col-lg-4 col-md-12 col-sm-12 col-xs-12">
+					<img style="width:100%;" class="img-floro  float-start"
+						src="https://media.discordapp.net/attachments/855286931982254112/958791502027452496/red_blu_mitad.jpg"
+						alt="Card image" />
+				</div>
+				<div class="col-xl-8 col-lg-8 col-md-12 col-sm-12 col-xs-12">
+					<div class="card ">
+						<div class="card-body">
+							<span class="card-title fs-3 p-1">Misión</span>
+							<p class="card-text">Contribuir al desarrollo farmaceutico
+								del país, ofreciendo productos de cálidad y a buen precio
+								promoviendo el uso de medicinas para cuidar a nuestro pueblo.</p>
+							<span class=" fs-3 p-1">Visión</span>
+							<p>Ser la empresa farmaceutica por excelencia para el pueblo,
+								brindando un servicio de calidad a nuestros clientes para que en
+								un futuro próximo, poder llegar a más lugares del país.</p>
+							<span class="fs-3 p-1">Objetivos</span>
+							<p>
+							<ul>
+								<li>Amplificar nuestros puntos en distintos lugares
+									abarcando mayor area y dando empleo.</li>
+								<li>Agilizar la atención , para a tender a mayor afluencia
+									de clientes.</li>
+								<li>Terminar la inaguracion de 2 proximos locales.</li>
+								<li>Ser tu primera opcion en cuanto a salud.</li>
+							</ul>
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<!-- -----------------ZONA DE LABORATORIO------------------------------------------------------ -->
+	<div id="laboratorio">
+		<br /> <br /> <br />
+		<div class="text-center">
+			<span class="badge rounded-pill bg-primary fs-1 " id="">Laboratorios</span>
+		</div>
+		<br /> <br />
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+					<div class="contenedor" id="productos">
+						<a href="https://www.latam.abbott/products.html" target="_blank"><figure>
+								<img
+									src="https://media.discordapp.net/attachments/855286931982254112/958794011026530364/abbot.jpeg"
+									alt="" />
+								<div class="capa">
+									<h2>
+										<strong>Abbot</strong>
+									</h2>
+								</div>
+							</figure></a>
+					</div>
+				</div>
+				<div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+					<div class="contenedor " id="productos">
+						<a target="_blank"
+							href="https://www.bayer.com/es/co/andina-y-cac-home"><figure>
+								<img class="bg-light"
+									src="https://media.discordapp.net/attachments/855286931982254112/958794011257221160/bayer.png?width=473&height=473"
+									alt="" />
+								<div class="capa">
+									<h2>
+										<strong>Bayer</strong>
+									</h2>
+								</div>
+							</figure></a>
+					</div>
+				</div>
+				<div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+					<div class="contenedor" id="productos">
+						<a href="http://www.brisafarma.com/" target="_blank"><figure>
+								<img
+									src="https://media.discordapp.net/attachments/855286931982254112/958794011592785960/brisafarma.png"
+									alt="" />
+								<div class="capa">
+									<h2>
+										<strong>Brisafarma</strong>
+									</h2>
+								</div>
+							</figure></a>
+					</div>
+				</div>
+
+				<br /> <br />
+
+
+				<div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+					<div class="contenedor" id="productos">
+						<a href="http://www.deutschepharma.com.pe/site/index.php"
+							target="_blank">
+							<figure>
+								<img
+									src="https://media.discordapp.net/attachments/855286931982254112/958794011789905920/deuschefarma.gif"
+									alt="" />
+								<div class="capa">
+									<h2>
+										<strong>Deutsche Pharma</strong>
+									</h2>
+								</div>
+							</figure>
+						</a>
+					</div>
+				</div>
+				<div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+					<div class="contenedor" id="productos">
+						<a href="http://www.hersil.com.pe/" target="_blank"><figure>
+								<img
+									src="https://media.discordapp.net/attachments/855286931982254112/958794012003823616/hersil.png"
+									alt="" />
+								<div class="capa">
+									<h2>
+										<strong>Hersil</strong>
+									</h2>
+								</div>
+							</figure></a>
+					</div>
+				</div>
+				<div class="col-12 col-xl-4 col-lg-4 col-md-6 col-sm-6 col-xs-12">
+					<div class="contenedor" id="productos">
+						<a href="https://www.jnjperu.com/johnson-johnson" target="_blank"><figure>
+								<img
+									src="https://media.discordapp.net/attachments/855286931982254112/958794010862973019/jhonsons.jpg?width=473&height=473"
+									alt="" />
+								<div class="capa">
+									<h2 class="johons">
+										<strong>Johonson</strong>
+									</h2>
+									<p class="johons fs-3">
+										<strong>y</strong>
+									</p>
+									<p class="johons fs-2">
+										<strong>Johonson</strong>
+									</p>
+								</div>
+							</figure></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+
+
+	<!-- CONTACTANOS- -->
+	<div
+		class=" vh-100  d-flex justify-content-center align-items-center fondo-contactenos"
+		id="contactenos">
+		<div class="card primero">
+
+			<div class="card-body text-dark login" id="login">
+
+				<h4 class="card-title"></h4>
+				<div class="text-center">
+					<img class="card-img-top bg-light card-contactanos"
+						src="https://media.discordapp.net/attachments/935382445803597854/958498394756755526/LOGOFARMACIA.png"
+						alt="Card image" />
+				</div>
+
+				<p class="p-contacta">
+				<h2 class="text-center ">Contactanos!!</h2>
+				</p>
+				<p class="p-contacta">
+				<h2 class="text-center "></h2>
+				</p>
+				<div>
+
+					<span class="input-group-text text-interno"><strong>Numero:
+							978941561</strong></span> <span class="input-group-text text-interno"><strong>Correo:
+							Megafarma@gmail.com</strong></span>
+
+
+
+				</div>
+				<br /> <br />
+
+				<tbody>
+					<tr class="container-iconos">
+						<div class="text-center">
+							<td class="contenedor-icon"><i class="bi bi-facebook fb"></i></td>
+							<td class="contenedor-icon"><i class="bi bi-whatsapp wsp"></i></td>
+							<td class="contenedor-icon"><i
+								class="bi bi-twitter twitter bg-info text-light"></i></td>
+							<td class="contenedor-icon"><i class="bi bi-tiktok tt"></i></td>
+						</div>
+					</tr>
+				</tbody>
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- -------------------TERMINOS Y CONDICIONES- Modal de terminos , se abre abajo-------------------------------------------- -->
+
+	<section class="container-fluid ">
+		<div class="row">
+			<div class="col-4">
+				<!-- Modal -->
+
+				<div th:insert="layout::terminos&condiciones"></div>
+
+				<br>
+			</div>
+		</div>
+		<br /> <br />
+	</section>
+
+	<!-- ---Nav bar inferior----Solicitudes Terminos Reclamaciones    -------- -->
+	<nav th:insert="layout::piePresentacion"></nav>
+</body>
+</html>

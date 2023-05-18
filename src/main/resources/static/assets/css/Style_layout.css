@@ -1,0 +1,80 @@
+/*		nav superior	*/
+
+.nav-superior-cliente{
+	background: #031770;
+	
+}
+
+.megafarma-inicio{
+	text-decoration:none;
+	color:#fff;
+}
+
+.megafarma-inicio:hover{
+		color:#fff;
+}
+
+/*		tamaño de la letra		*/
+.letra-size{
+	margin-right: 10px;
+}
+
+.icono-sol{
+	margin-right: 15px; margin-left: 20px;
+}
+
+.valoracion{
+	margin-left: 20px;
+	
+}
+
+/*		estilos cheveres		*/
+/* From uiverse.io by @adamgiebl */
+/* From uiverse.io by @adamgiebl */
+.boton {
+ position: relative;
+ padding:5px 5px;
+ margin: 0px 10px 10px 0px;
+ float: left;
+ border-radius: 3px;
+ 
+ color: #FFF;
+ text-decoration: none;
+ background-color: #34C12B;
+ border: none;
+ border-bottom: 5px solid #34C12B;
+ text-shadow: 0px -2px #27ae60;
+ -webkit-transition: all 0.1s;
+ transition: all 0.1s;
+}
+
+.boton:hover, .boton:active {
+ -webkit-transform: translate(0px,5px);
+ -ms-transform: translate(0px,5px);
+ transform: translate(0px,5px);
+ border-bottom: 1px solid #2ecc71;
+}
+
+/* From uiverse.io by @NorthFishHasNa */
+
+.fondo-off{
+background: #0f0c29;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+
+/*		MODAL BORROSO		*/
+
+/*		Iniciar sesion home		*/
+
+
+
+
+
+
+
+
+
+
+
